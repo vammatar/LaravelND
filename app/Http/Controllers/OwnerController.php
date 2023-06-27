@@ -17,9 +17,14 @@ class OwnerController extends Controller
 
         $filter=$request->session()->get('filterOwners', (object)['name'=>null,'surname'=>null]);
 
-        $owners=Owner::filter($filter)->orderBy("name")->get();
+        $owners=Owner::filter($filter)->orderBy("name");
 
-        // $owners=Owner::all();
+        if (auth()->user()->role == 'user') {
+            $owners = $owners->where('user_id', auth()->id());
+        }
+
+        $owners = $owners->get();
+
         return view("owners.index",[
             "owners"=>$owners,
             "filter"=>$filter
@@ -48,6 +53,7 @@ class OwnerController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Owner::class);
         return view('owners.create');
     }
 
@@ -66,16 +72,20 @@ class OwnerController extends Controller
 
     public function show(Owner $owner)
     {
+        $this->authorize('view', $owner);
         return view('owners.show', compact('owner'));
     }
 
     public function edit(Owner $owner)
     {
+        $this->authorize('update', $owner);
         return view('owners.edit', ['owner' => $owner]);
     }
 
     public function update(Request $request, Owner $owner)
     {
+        $this->authorize('update', $owner);
+
         $validatedData = $request->validate([
             'name' => 'required',
             'surname' => 'required',
@@ -89,6 +99,8 @@ class OwnerController extends Controller
 
     public function destroy(Owner $owner)
     {
+        $this->authorize('delete', $owner);
+
         $owner->delete();
 
         return redirect()->route('owners.index')->with('success', 'Owner deleted successfully.');

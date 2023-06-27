@@ -35,6 +35,13 @@ class CarController extends Controller
 
         $carsQuery = Car::query();
 
+        if (auth()->user()->role == 'user') {
+            $carsQuery = $carsQuery->whereHas('owner', function ($query) {
+                $query->where('user_id', auth()->id());
+            });
+        }
+
+
         if ($request->filled('owner') && $request->input('owner') !== 'All') {
             $carsQuery->where('owner_id', $request->input('owner'));
         }
@@ -86,6 +93,8 @@ class CarController extends Controller
 
     public function edit(Car $car)
     {
+        $this->authorize('update', $car);
+
         $owners = Owner::orderBy('surname')->get();
 
         return view('cars.edit', compact('car', 'owners'));
@@ -93,6 +102,8 @@ class CarController extends Controller
 
     public function update(Request $request, Car $car)
     {
+        $this->authorize('update', $car);
+
         $licensePlateRule = 'required|regex:/^[A-Z]{3}[0-9]{3}$/';
 
 
@@ -137,6 +148,7 @@ class CarController extends Controller
 
     public function destroy(Car $car)
     {
+        $this->authorize('delete', $car);
 
         Log::info('Delete method called for car ' . $car->id);
         $car->delete();

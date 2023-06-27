@@ -80,6 +80,21 @@
                             </li>
                         @endguest
                     </ul>
+                    <form method="POST" action="{{ route('user.changeRole') }}">
+                        @csrf
+                        <input type="hidden" name="role" value="admin">
+                        <button type="submit">Admin</button>
+                    </form>
+                    <form method="POST" action="{{ route('user.changeRole') }}">
+                        @csrf
+                        <input type="hidden" name="role" value="read_only">
+                        <button type="submit">Read Only</button>
+                    </form>
+                    <form method="POST" action="{{ route('user.changeRole') }}">
+                        @csrf
+                        <input type="hidden" name="role" value="user">
+                        <button type="submit">User</button>
+                    </form>
                 </div>
             </div>
         </nav>
