@@ -26,5 +26,8 @@ return [
     'cars' => 'Mašinos',
     'emailAddress' => 'Elektroninis paštas',
     'password' => 'Slaptažodis',
-    'confirmPassword' => 'Patvirtinkite Slaptažodį'
+    'confirmPassword' => 'Patvirtinkite Slaptažodį',
+    'invalidName' => 'Netinkamai ivestas vardas, patikrinkite, kad būtų vartuojamos tik abėcėlės raides',
+    'invalidSurname' => 'Netinkamai ivesta pavardė, patikrinkite, kad būtų vartuojamos tik abėcėlės raides',
+    'invalidLicensePlate' => 'Valstybinis numeris turi būti formato ABC123, kur ABC yra raidės, o 123 yra skaičiai'
 ];

@@ -28,6 +28,16 @@ class OwnerController extends Controller
     }
 
     public function search(Request $request){
+
+        $validatedData = $request->validate([
+            'name' => 'nullable|regex:/^[a-zA-Z]+$/',
+            'surname' => 'nullable|regex:/^[a-zA-Z]+$/'
+        ], [
+            'name.regex' => __('messages.invalidName'),
+            'surname.regex' => __('messages.invalidSurname')
+        ]);
+
+
         $filterOwners=new \stdClass();
         $filterOwners->name=$request->name;
         $filterOwners->surname=$request->surname;

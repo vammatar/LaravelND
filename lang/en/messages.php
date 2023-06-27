@@ -26,5 +26,8 @@ return [
     'cars' => 'Cars',
     'emailAddress' => 'Email Address',
     'password' => 'Password',
-    'confirmPassword' => 'Confirm Password'
+    'confirmPassword' => 'Confirm Password',
+    'invalidName' => 'Invalid name',
+    'invalidSurname' => 'Invalid surname',
+    'invalidLicensePlate' => 'The license plate should be in the format of ABC123, where ABC are letters and 123 are numbers'
 ];
