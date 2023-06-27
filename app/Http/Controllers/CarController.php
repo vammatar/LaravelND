@@ -6,6 +6,7 @@ use App\Models\Car;
 use App\Models\Owner;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\Http\Middleware\PermissionMiddleware;
 
 class CarController extends Controller
 {
@@ -14,6 +15,11 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         $carsQuery = Car::query();

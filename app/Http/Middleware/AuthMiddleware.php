@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class KeiksmazodziaiMiddleware
+class AuthMiddleware
 {
     /**
      * Handle an incoming request.
@@ -14,14 +14,12 @@ class KeiksmazodziaiMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        $response= $next($request);
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
 
-        $content=$response->getContent();
-        $content=str_replace( '[[tel]]', '+37091293384', $content);
-        $content=str_replace( 'žiurkė', 'ž***ė', $content);
-        $response->setContent($content);
-        return $response;
+        return $next($request);
     }
 }

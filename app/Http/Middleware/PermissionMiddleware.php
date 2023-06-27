@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class SuaugusiemsMiddleware
+class PermissionMiddleware
 {
     /**
      * Handle an incoming request.
@@ -14,14 +14,22 @@ class SuaugusiemsMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next, $permission)
     {
-        if ($request->user()==null){
-            return redirect()->route('login');
+        if (!Auth::check()) {
+            return redirect('/login');
         }
-        if ($request->user()->age<18){
-            return redirect()->route('students.index');
+
+        $user = Auth::user();
+
+        if ($user->role == 'admin') {
+            return $next($request);
         }
+
+        if (!$user->hasPermission($permission)) {
+            abort(403);
+        }
+
         return $next($request);
     }
 }

@@ -21,5 +21,10 @@ return [
     'birthYear' => 'Birth-Year',
     'invalid_name' => 'Invalid name',
     'invalid_surname' => 'Invalid surname',
-    'invalid_license_plate' => 'The license plate should be in the format of ABC123, where ABC are letters and 123 are numbers.'
+    'invalid_license_plate' => 'The license plate should be in the format of ABC123, where ABC are letters and 123 are numbers.',
+    'owners' => 'Owners',
+    'cars' => 'Cars',
+    'emailAddress' => 'Email Address',
+    'password' => 'Password',
+    'confirmPassword' => 'Confirm Password'
 ];

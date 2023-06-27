@@ -29,19 +29,19 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a href="{{ route('owners.index') }}"  class="nav-link">Savininkai</a>
+                            <a href="{{ route('owners.index') }}"  class="nav-link">{{__ ("messages.owners")}}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('cars.index') }}"  class="nav-link">Masinos</a>
+                            <a href="{{ route('cars.index') }}"  class="nav-link">{{__ ("messages.cars")}}</a>
                         </li>
 
 
-                        <!-- <li class="nav-item">
+                        <! <li class="nav-item">
                             <a href="{{ route('setLanguage','lt') }}" class="nav-link">LT</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('setLanguage','en') }}" class="nav-link">EN</a>
-                        </li> -->
+                        </li>
 
                     </ul>
 
@@ -62,7 +62,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -88,6 +88,5 @@
             @yield('content')
         </main>
     </div>
-Mano telefonas: [[tel]]
 </body>
 </html>

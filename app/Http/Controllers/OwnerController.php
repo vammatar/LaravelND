@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use App\Http\Middleware\PermissionMiddleware;
 
 class OwnerController extends Controller
 {
     public function __construct(){
-
+        $this->middleware('auth');
     }
 
     public function index(Request $request){
