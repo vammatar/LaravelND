@@ -5,6 +5,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CarController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,13 +43,14 @@ Route::get('/cars/{car}/edit', [CarController::class, 'edit'])->name('cars.edit'
 Route::put('/cars/{car}', [CarController::class, 'update'])->name('cars.update');
 // Delete Car
 Route::delete('/cars/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
+// Photos of Car
+Route::post('/cars/{car}/photos', [CarController::class, 'uploadPhoto'])->name('cars.uploadPhoto');
+Route::delete('/cars/{car}/photos/{photoId}', [CarController::class, 'deletePhoto'])->name('cars.deletePhoto');
 
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
 
 Auth::routes();
 

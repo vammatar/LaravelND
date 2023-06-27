@@ -29,5 +29,10 @@ return [
     'confirmPassword' => 'Patvirtinkite Slaptažodį',
     'invalidName' => 'Netinkamai ivestas vardas, patikrinkite, kad būtų vartuojamos tik abėcėlės raides',
     'invalidSurname' => 'Netinkamai ivesta pavardė, patikrinkite, kad būtų vartuojamos tik abėcėlės raides',
-    'invalidLicensePlate' => 'Valstybinis numeris turi būti formato ABC123, kur ABC yra raidės, o 123 yra skaičiai'
+    'invalidLicensePlate' => 'Valstybinis numeris turi būti formato ABC123, kur ABC yra raidės, o 123 yra skaičiai',
+    'photosUpload' => 'Nuotraukų įkėlimas',
+    'upload' => 'Įkelti',
+    'editCar' => 'Koreguoti mašinos duomenys',
+    'currentPhotos' => 'Nuotraukos',
+    'deletePhoto' => 'Ištrinti Nuotrauką',
 ];
